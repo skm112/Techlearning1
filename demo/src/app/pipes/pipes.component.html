@@ -1,0 +1,44 @@
+<p>
+ Hero birthday is {{birthday}}
+</p>
+<br>
+<p>
+ Hero birthday is {{birthday|date}}
+</p>
+<br>
+<p>
+ Hero birthday is {{birthday|date: "dd-MMM-yyyy"}}
+</p>
+<br>
+<p>
+ Hero birthday is {{birthday|date: "dd-MMM-yyyy"|uppercase}}
+</p>
+<br>
+<p>
+ Hero birthday is {{birthday|date: "dd-MMM-yyyy"|lowercase}}
+</p>
+<br>
+<p>Toggle</p>
+<br>
+<p>
+ Hero birthday is {{birthday|date:format|uppercase}}
+</p>
+<button (click)="toggleFormat()">Toggle Format</button>
+<br>
+<p>Currency => {{money}}</p>
+<br>
+<p>Currency => {{money|currency}}</p>
+<br>
+<p>Currency => {{money|currency:'INR'}}</p>
+<br>
+<p>Currency => {{money|percent}}</p><br>
+<p>{{a|percent}}</p><br>
+<p>{{b|percent:'4.3-5'}}</p><br>
+<p>{{name|slice:4}}</p><br>
+<p>{{name|limitTo:7}}</p><br>
+<table>
+    <tr *ngFor="let hero of ('assets/db.json'|fetch)">
+        <td>{{hero.id}}</td>
+        <td>{{hero.name}}</td>
+    </tr>
+</table>

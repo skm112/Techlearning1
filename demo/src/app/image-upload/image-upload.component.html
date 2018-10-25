@@ -1,0 +1,35 @@
+<table>
+  <tr *ngFor="let item of arrUp">
+    <td>
+      <label>{{item.type}}</label>
+      <br>
+      <div><img height="50px" width="50px" src="{{item.imagedata}}" *ngIf="show"></div>
+      <input type="file" (change)='fileChange($event,item.type)'>
+    </td>
+    <td>
+
+    </td>
+  </tr>
+</table>
+<div>
+  <p *ngIf="show">uploading....Done</p>
+</div>
+
+<button (click)="save()">Save</button><br><br>
+<table>
+  <tr>
+    <th>IMG1</th>
+    <th>IMG2</th>
+    <th>IMG3</th>
+    <th>Action</th>
+  </tr>
+  <tr *ngFor="let obj of arrTable">
+    <td><img height="50px" width="50px" src="data:{{obj.docs[0].avtar.filetype}};base64,{{obj.docs[0].avtar.blobdata}}">
+      <br>{{obj.docs[0].name}}&nbsp;</td>
+    <td><img height="50px" width="50px" src="data:{{obj.docs[1].avtar.filetype}};base64,{{obj.docs[1].avtar.blobdata}}">
+      <br>{{obj.docs[1].name}}&nbsp;&nbsp;</td>
+    <td><img height="50px" width="50px" src="data:{{obj.docs[2].avtar.filetype}};base64,{{obj.docs[2].avtar.blobdata}}">
+      <br>{{obj.docs[2].name}}&nbsp;&nbsp;</td>
+    <td><a (click)="edit(obj)" style="color:blue">Edit</a>|<a (click)="delete(obj)" style="color:red">Delete</a></td>
+  </tr>
+</table>

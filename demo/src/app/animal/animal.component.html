@@ -1,0 +1,13 @@
+<h2>Add animals</h2>
+
+<div>
+  <input type="text" [(ngModel)]="name">&nbsp;
+  <button (click)="addUpdate()">Done</button>
+</div>
+<br>
+<ul>
+  <li *ngFor="let aml of arrAnimal">
+    <a (click)="delete(aml)">{{aml.name}}</a>
+    <a (click)="edit(aml)" >&nbsp;Edit</a>
+  </li>
+</ul>

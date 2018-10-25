@@ -1,0 +1,32 @@
+<table>
+    <tr>
+        <td>
+            <form [formGroup]="uploadForm" (ngSubmit)="save()">
+                <label>Upload File </label><br><br>
+                <input type="text" formControlName="name" placeholder="Product Name ..."><br>
+                <input type="number" formControlName="price" placeholder="Price ..."><br>
+                <input type="file" (change)='fileChange($event)' formControlName="filename"><br>
+                <button type="submit">Save</button>
+            </form>
+        </td>
+        <td>
+            <!-- <div><img height="50px" width="50px" src="{{imageData}}"></div> -->
+            <div><img height="50px" width="50px" src="{{url}}{{link}}" *ngIf="icon"></div>
+
+        </td>
+    </tr>
+</table>
+<table>
+    <tr>
+        <th>IMG</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Action</th>
+    </tr>
+    <tr *ngFor="let obj of arrTable">
+        <td><img height="50px" width="50px" src="{{url}}{{obj.pic}}"></td>
+        <td>{{obj.name}}</td>
+        <td>{{obj.price|currency:'INR'}}</td>
+        <td><a (click)="edit(obj)" style="color:blue">Edit</a>|<a (click)="delete(obj)" style="color:red">Delete</a></td>
+    </tr>
+</table>

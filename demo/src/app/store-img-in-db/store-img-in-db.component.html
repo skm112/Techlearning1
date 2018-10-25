@@ -1,0 +1,13 @@
+<table>
+  <tr>
+    <td>
+      <input type="text" [(ngModel)]="name" placeholder="Product Name ..."><br>
+      <input type="text" [(ngModel)]="price" placeholder="Price of Product ..."><br>
+      <input type="file" (change)='fileChange($event)' [(ngModel)]="filename"><br>
+      <input type="button" (click)="save()" value="Save">
+    </td>
+    <td>
+      <div><img height="50px" width="50px" src="{{imageData}}"></div>
+    </td>
+  </tr>
+</table>

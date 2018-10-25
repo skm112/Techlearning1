@@ -1,0 +1,66 @@
+<form [formGroup]="loginForm" (ngSubmit)="login()">
+  <!-- Name----------------------------------------------- -->
+  <div>
+    <label for="username">Username *</label>
+    <input type="text" formControlName="username">
+    <div [hidden]="loginForm.controls.username.valid || (loginForm.controls.username.pristine)">
+      <div *ngIf="loginForm.controls['username'].hasError('required')" style="color:red">
+        required
+      </div>
+      <div *ngIf="loginForm.controls['username'].hasError('minlength')" style="color:red">
+        minimum 5 char required
+      </div>
+      <div *ngIf="loginForm.controls['username'].hasError('maxlength')" style="color:red">
+        maximum 12 char required
+      </div>
+    </div>
+  </div>
+<!-- City------------------------------------ -->
+  <div>
+    <label for="city">City *</label>
+    <input type="text" formControlName="usercity">
+    <div [hidden]="(loginForm.controls.usercity.valid) || (loginForm.controls.usercity.pristine)">
+      <div *ngIf="loginForm.controls['usercity'].hasError('required')" style="color:red">
+        required
+      </div>
+    </div>
+    <div [hidden]="(loginForm.controls.usercity.valid) || (loginForm.controls.usercity.pristine)">
+      <div *ngIf="loginForm.controls['usercity'].hasError('minlength')" style="color:red">
+        minimum 5 char required
+      </div>
+    </div>
+  </div>
+<!-- Email------------------------------------------- -->
+  <div>
+    <label for="email">Email ID *</label>
+    <input type="text" formControlName="useremail">
+    <div [hidden]="(loginForm.controls.useremail.valid) || (loginForm.controls.useremail.pristine)">
+      <div *ngIf="loginForm.controls['useremail'].hasError('required')" style="color:red">
+        required
+      </div>
+    <div [hidden]="(loginForm.controls.useremail.valid) || (loginForm.controls.useremail.pristine)">
+      <div *ngIf="loginForm.controls['useremail'].hasError('pattern')" style="color:red">
+        invalid mail
+      </div>
+    </div>
+  </div>
+  </div>
+<!-- Password--------------------------------------------- -->
+  <div>
+    <label for="password"> Password *</label>
+    <input type="password" formControlName="password">
+    <div [hidden]="(loginForm.controls.password.valid) || (loginForm.controls.password.pristine)">
+      <div *ngIf="loginForm.controls['password'].hasError('required')" style="color:red">required</div>
+    </div>
+    <div [hidden]="(loginForm.controls.password.valid) || (loginForm.controls.password.pristine)">
+      <div *ngIf="loginForm.controls['password'].hasError('minlength')" style="color:red">required</div>
+    </div>
+    <div [hidden]="(loginForm.controls.password.valid) || (loginForm.controls.password.pristine)">
+      <div *ngIf="loginForm.controls['password'].hasError('maxlength')" style="color:red">required</div>
+    </div>
+    <br>
+
+    <!-- Button--------------------------------------- -->
+    <button [disabled]='!loginForm.valid'>Login</button>
+  </div>
+</form>

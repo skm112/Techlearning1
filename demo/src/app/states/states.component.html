@@ -1,0 +1,31 @@
+<h1>{{country}}</h1><br>
+<h4>Add States</h4><br>
+<input type="text" [(ngModel)]="name" placeholder="State Name">
+
+<br>
+<br>
+<input type="button" (click)="save()" value="Save">&nbsp;
+<input type="button" (click)="cancel()" value="Cancel">&nbsp;
+<input type="button" (click)="Update()" value="Update">&nbsp;
+
+<br>
+<input type="text" [(ngModel)]="pagesearch" placeholder="search">
+<input type="button" (click)="search()" value="Search">&nbsp;
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Action</th>
+  </tr>
+  <tr *ngFor="let obj of arrState">
+    <td>{{obj.name}}</td>
+    <td>
+      <a (click)="edit(obj)">Edit</a>|
+      <a (click)="delete(obj)">Delete</a>
+    </td>
+  </tr>
+
+</table>
+<p><a (click)="getData(pageno,pagesize)" *ngFor="let pageno of arrPage">
+    {{pageno}}
+  </a></p>
+

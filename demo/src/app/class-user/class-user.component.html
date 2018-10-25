@@ -1,0 +1,43 @@
+<div>
+  <label for="name">Name</label>&nbsp;&nbsp;
+  <input type="text" [(ngModel)]="userObj.name"><br><br>
+
+  <label for="state">State</label>&nbsp;&nbsp;
+  <input type="text" [(ngModel)]="userObj.state"><br><br>
+
+  <label for="city">City</label>&nbsp;&nbsp;
+  <input type="text" [(ngModel)]="userObj.city"><br><br>
+
+  <label for="phone">Phone</label>&nbsp;&nbsp;
+  <input type="number" [(ngModel)]="userObj.phone"><br><br>
+</div>
+<button (click)="saveUpdate()">Save</button>&nbsp;
+<button (click)="cancel()">Cancel</button>
+<br><br>
+<table>
+  <tr>
+      <th>Name</th>
+      <th>State</th>
+      <th>City</th>
+      <th>Phone</th>
+      <th>Action</th>
+    
+  </tr>
+  <tr *ngFor="let obj of arrUser">
+    <td>{{obj.name}}</td>
+    <td>{{obj.state}}</td>
+    <td>{{obj.city}}</td>
+    <td>{{obj.phone}}</td>
+    <td><a (click)="edit(obj)">Edit</a> |
+      <a (click)="delete(obj)">Delete</a>
+    </td>
+  </tr>
+</table>
+
+<!-- ---------------------------- -->
+
+<div *ngIf="true;else abc">This is if then</div>
+<ng-template #abc>
+  This is else case
+</ng-template>
+

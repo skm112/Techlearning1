@@ -1,0 +1,101 @@
+<div>
+<label for="name">Name</label>&nbsp;&nbsp;
+<input type="text" [(ngModel)]="name"><br><br>
+
+<label for="state">State</label>&nbsp;&nbsp;
+<input type="text" [(ngModel)]="state"><br><br>
+
+<label for="city">City</label>&nbsp;&nbsp;
+<input type="text" [(ngModel)]="city"><br><br>
+
+<label for="phone">Phone</label>&nbsp;&nbsp;
+<input type="number" [(ngModel)]="phone"><br><br>
+</div>
+<button (click)="saveUpdate()">Save</button>&nbsp;
+<button (click)="cancel()">Cancel</button>
+<br><br>
+<select (change)="onSelectChange1($event.target.value)">
+  <option>true</option>
+  <option>false</option>
+</select> 
+{{status}}
+<br><br>
+<!-- <table *ngIf="status">
+  <tr>
+    <th>Name</th>
+    <th>State</th>
+    <th>City</th>
+    <th>Phone</th>
+    <th>Action</th>
+    
+  </tr>
+  <tr *ngFor="let obj of arrUsers">
+    <td>{{obj.name}}</td>
+    <td>{{obj.state}}</td>
+    <td>{{obj.city}}</td>
+    <td>{{obj.phone}}</td>
+    <td><a (click)="edit(obj)" >Edit</a> |
+      <a (click)="delete(obj)" >Delete</a>
+    </td>
+  </tr>
+</table> -->
+<!-- DataTables Example -->
+<div class="card mb-3">
+  <div class="card-header">
+    <i class="fas fa-table"></i>
+    Data Table Example</div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>State</th>
+            <th>City</th>
+            <th>Phone</th>
+            <th>Action</th>
+          
+          </tr>
+        </thead>
+       
+        <tbody>
+        <tr *ngFor="let obj of arrUsers">
+          <td>{{obj.name}}</td>
+          <td>{{obj.state}}</td>
+          <td>{{obj.city}}</td>
+          <td>{{obj.phone}}</td>
+          <td><a (click)="edit(obj)">Edit</a> |
+            <a (click)="delete(obj)">Delete</a>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+</div>
+
+<!-- ---------------------------------------------------- -->
+<select (change)="onSelectChange($event.target.value)">
+  <option *ngFor="let code of arrCountryCode">{{code}}</option>
+</select>
+
+<ul [ngSwitch]="currentCountry">
+  <li *ngSwitchCase="'US'">United States</li>
+  <li *ngSwitchCase="'UK'">United Kingdom</li>
+  <li *ngSwitchCase="'IN'">India</li>
+  <li *ngSwitchCase="'CH'">China</li>
+  <li *ngSwitchDefault>Others</li>
+  
+</ul>
+<!-- ------------------------------------------------- -->
+<div [ngClass]="{highlight:status}">
+  This is Div tag
+</div>
+<!-- ------------------------- -->
+<div ngNonBindable>{{Done}}</div>
+<!-- ----------------------- -->
+<div [ngStyle]='{color:"blue","background-color":"yellow"}'>
+  This id ngStyle
+</div>
+<router-outlet></router-outlet>

@@ -1,0 +1,30 @@
+<form [formGroup]="loginForm" (ngSubmit)="login()">
+  <!-- age----------------------------------------------- -->
+  <div>
+    <label for="age">Age *</label>
+    <input type="text" formControlName="age">
+
+    <div [hidden]="loginForm.controls.age.valid || (loginForm.controls.age.pristine)">
+      <div *ngIf="loginForm.controls['age'].hasError('required')" style="color:red">
+        required
+      </div>
+    </div>
+
+    <div [hidden]="loginForm.controls.age.valid || (loginForm.controls.age.pristine)">
+      <div *ngIf="loginForm.controls['age'].hasError('number1')" style="color:red">
+        only 111 valid
+      </div>
+    </div>
+
+    <!-- <div [hidden]="loginForm.controls.age.valid || (loginForm.controls.age.pristine)">
+      <div *ngIf="loginForm.controls['age'].hasError('age Range')" style="color:red">
+        age range
+      </div>
+    </div> -->
+    <div [hidden]="loginForm.controls.age.valid || (loginForm.controls.age.pristine)">
+      <div *ngIf="loginForm.controls['age'].hasError('ageRange2')" style="color:red">
+        age range (12,24)
+      </div>
+    </div>
+  </div>
+</form>

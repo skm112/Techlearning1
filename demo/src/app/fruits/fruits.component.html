@@ -1,0 +1,25 @@
+<!-- <p>
+  fruits works!
+</p>
+<input type="text" [(ngModel)]="name">
+<button (click)="addFruit()">Done</button>
+<ul>
+  <li *ngFor="let ft of arrFruits">
+    <a (click)="delete(ft)">{{ft}}</a>
+    <a (click)="edit(ft)">    
+      edit</a>
+  </li>
+
+</ul> -->
+<h2>List of fruits</h2>
+<input type="text" [(ngModel)]="name"><br><br>
+<button (click)="addFruit1()">Add</button>&nbsp;
+<button (click)="updateFruit()">Update</button>
+
+<ul>
+  <li *ngFor="let ft of arrFruits1">
+    <a (click)="delete1(ft)">{{ft.name}}</a>
+    <a (click)="edit(ft)">    
+      edit</a>
+  </li>
+</ul>
