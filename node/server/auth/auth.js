@@ -1,6 +1,7 @@
 const jwt = require("jwt-simple");
 const moment = require("moment");
-const config = require("../../setups/myurl")
+const config = require("../../setups/myurl");
+var bcrypt = require('bcryptjs');
 
 module.exports = {
     ensureAuthenticated: function (req, res, next) {
@@ -27,5 +28,16 @@ module.exports = {
             exp: moment().add(14, 'days').unix()
         };
         return jwt.encode(payload, config.TOKEN_SECRET);
-    }
+    },
+    decodeJWT: function (req) {
+        var token = req.headers.authorization.split(' ')[1];
+        var decoded = jwt.decode(token, config.TOKEN_SECRET);
+        // console.log(decoded);
+        return decoded;
+    },
+
+
+
+
+
 }

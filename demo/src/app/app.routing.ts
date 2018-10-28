@@ -20,6 +20,9 @@ import { ImageUploadComponent } from "./image-upload/image-upload.component";
 import { ValidatorsComponent } from "./validators/validators.component";
 import { LoginComponent } from "./login/login.component";
 import { RegisterComponent } from "./register/register.component";
+import { CanActivateAuthGuard } from "./guard/auth.guard";
+import { AlertComponent } from "./_directives/alert.component";
+import { UserPasswordResetComponent } from "./user-password-reset/user-password-reset.component";
 
 const appRoutes: Routes = [
   { path: "home", component: HomeComponent },
@@ -33,7 +36,8 @@ const appRoutes: Routes = [
   { path: "detail/:id/:name", component: StatesComponent },
   { path: "fruits", component: FruitsComponent },
   { path: "animal", component: AnimalComponent },
-  { path: "product", component: ProductComponent },
+  { path: "product", component: ProductComponent, canActivate: [CanActivateAuthGuard] },
+  { path: "reset", component: UserPasswordResetComponent, canActivate: [CanActivateAuthGuard] },
   { path: "cuser", component: ClassUserComponent },
   { path: "customdirective", component: CustomDirectivesComponent },
   { path: "fatarrow", component: FatArrowComponent },
@@ -45,7 +49,8 @@ const appRoutes: Routes = [
   { path: 'validators', component: ValidatorsComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
-  { path: "", redirectTo: "home", pathMatch: "full" }
+  { path: "", redirectTo: "home", pathMatch: "full" },
+
 ];
 @NgModule({
   imports: [RouterModule.forRoot(appRoutes)],
@@ -74,5 +79,8 @@ export const routingComponents = [
   ImageUploadComponent,
   ValidatorsComponent,
   RegisterComponent,
-  LoginComponent
+  LoginComponent,
+  AlertComponent,
+  UserPasswordResetComponent
+
 ];

@@ -71,5 +71,44 @@ router.get('/me', auth.ensureAuthenticated, (req, res) => {
     })
 })
 
+//@type         PUT
+//@route        /auth/user/reset/password
+//@desc         reset user password
+//@access       PRIVATE
+router.put('/reset/password', auth.ensureAuthenticated, (req, res) => {
+    var oldpass = req.body.oldpass;
+    var id = auth.decodeJWT(req).sub;
+    db.findOne({ '_id': id }, '+password', (err, user) => {
+        if (!user) {
+            return res.send({ success: false, message: "old password not matched" })
+        } else {
+            user.comparePassword(oldpass, (err, isMatch) => {
+                if (!isMatch) {
+                    return res.send({ success: false, message: "password incorrect ..." });
+                } else {
+                    user.changePassword(req.body.password, (err, hashpass) => {
+                        if (err) {
+                            return res.send({ success: false, message: 'Not Updated' });
+                        }
+                        else {
+                            db.findOneAndUpdate({ '_id': mongoose.Types.ObjectId(user._id) }, { 'password': hashpass }, function (err1, doc1) {
+                                if (err1)
+                                    res.send({ success: false, message: err1.message });
+                                else
+                                    res.send({ success: true, message: 'Operation Successful.' });
+                            })
+                            //res.send({success:true,message:'Operation Successful.'});
+                        }
+                    })
+                }
+            })
+        }
+    })
+})
+
+
+
+
+
 
 module.exports = router;

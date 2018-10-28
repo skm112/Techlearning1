@@ -1,4 +1,4 @@
-import { AbstractControl, ValidatorFn } from "@angular/forms";
+import { AbstractControl, ValidatorFn, FormGroup } from "@angular/forms";
 //@1
 export function validateNumber(control: AbstractControl) {
     if (parseInt(control.value) == 111) {
@@ -24,6 +24,20 @@ export function ageRange(min: number, max: number): ValidatorFn {
             return { 'ageRange2': true }
         }
         return null;
+    }
+}
+// @4
+export class PasswordValidation {
+    static MatchPassword(AC: AbstractControl) {
+        let password = AC.get('password').value; // to get value in input tag
+        let confirmPass = AC.get('confirmPass').value; // to get value in input tag
+        if (password != confirmPass) {
+            // console.log('false');
+            AC.get('confirmPass').setErrors({ MatchPassword: true })
+        } else {
+            // console.log('true');
+            return null
+        }
     }
 }
 

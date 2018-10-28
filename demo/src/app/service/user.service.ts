@@ -31,22 +31,32 @@ export class UserService {
         })
       );
   }
-
-  //@profile
-  getprofile(): Observable<any> {
+  //@header
+  headerFun() {
     let token = localStorage.getItem('token');
-    console.log(token);
-    //
+    // console.log(token);
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         'Authorization': 'Bearer ' + token
       })
     };
-    return this.http.get<any>("http://localhost:3000/auth/user/me", httpOptions)
+    return httpOptions;
+  }
+
+
+  //@profile
+  getprofile(): Observable<any> {
+    return this.http.get<any>("http://localhost:3000/auth/user/me", this.headerFun())
       .pipe(
         map(response => response)
       )
+  }
+
+  //@resetpassword
+  resetPass(obj: any): Observable<any> {
+    return this.http.put("http://localhost:3000/auth/user/reset/password", obj, this.headerFun())
+      .pipe(map(response => response))
   }
 
 

@@ -4,15 +4,16 @@ import { Router } from '@angular/router';
 import { UserService } from '../service/user.service';
 import { AlertService } from '../service/alert.service';
 import { first } from 'rxjs/operators';
+import { PasswordValidation } from '../validators/customvalidator';
+// import { checkPasswords } from '../validators/customvalidator';
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  selector: 'app-user-password-reset',
+  templateUrl: './user-password-reset.component.html',
+  styleUrls: ['./user-password-reset.component.css']
 })
-export class RegisterComponent implements OnInit {
-
-  registerForm: FormGroup;
+export class UserPasswordResetComponent implements OnInit {
+  resetForm: FormGroup;
   loading = false;
   submitted = false;
 
@@ -24,30 +25,29 @@ export class RegisterComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.registerForm = this.formBuilder.group({
-      fullname: ['', Validators.required],
-      username: ['', Validators.required],
+    this.resetForm = this.formBuilder.group({
+      oldpass: ['', [Validators.required, Validators.minLength(6)]],
       password: ['', [Validators.required, Validators.minLength(6)]],
-      email: ['', [Validators.required, Validators.pattern("^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$")]]
-    });
+      confirmPass: ['', [Validators.required, Validators.minLength(6)]],
+    }, {
+        validator: PasswordValidation.MatchPassword // your validation method
+      });
   }
 
   // convenience getter for easy access to form fields
-  get f() { return this.registerForm.controls; }
+  get f() { return this.resetForm.controls; }
 
   onSubmit() {
     this.submitted = true;
     // stop here if form is invalid
-    if (this.registerForm.invalid) {
+    if (this.resetForm.invalid) {
       return;
     }
     this.loading = true;
-    this.userService.savedata(this.registerForm.value).pipe(first()).subscribe(data => {
-      // console.log(data);
-      console.log("done");
+    this.userService.resetPass(this.resetForm.value).pipe(first()).subscribe(data => {
+      console.log(data);
 
-      this.alertService.success('Registration successful', true);
-      this.router.navigate(['/login']);
+      this.router.navigate(['/product']);
     },
       error => {
         this.alertService.error(error);

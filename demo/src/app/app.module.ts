@@ -17,14 +17,16 @@ import { ImageService } from "./service/image.service";
 import { ImageUploadService } from "./service/image-upload.service";
 import { AlertService } from "./service/alert.service";
 import { UserService } from "./service/user.service";
+import { CanActivateAuthGuard } from "./guard/auth.guard";
+import { UserPasswordResetComponent } from './user-password-reset/user-password-reset.component';
 
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, routingComponents, TruncatePipe, FetchPipe, MyHighlighter, MyIf,],
 
-  imports: [BrowserModule, FormsModule, ReactiveFormsModule, AppRouting, HttpClientModule,],
+  imports: [BrowserModule, FormsModule, ReactiveFormsModule, AppRouting, HttpClientModule],
 
-  providers: [DataService, CountryDataService, ProductService, ImageService, ImageUploadService, AlertService, UserService],
+  providers: [DataService, CountryDataService, ProductService, ImageService, ImageUploadService, AlertService, UserService, CanActivateAuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
